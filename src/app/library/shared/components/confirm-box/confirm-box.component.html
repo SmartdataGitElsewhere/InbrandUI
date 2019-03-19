@@ -1,0 +1,14 @@
+<div class="popup" *ngIf="confirmService.show">
+  <div class="popup-content">
+   <div class="row body">
+     <div class="row msg">
+      <p>Are you sure to delete?</p>
+     </div>
+     <div class="row msg"> 
+       <div class="col-sm-6"></div>
+       <div class="col-sm-6"> <button class="btn" (click)="OK()">Yes</button>
+        <button class="btn primry" (click)="Cancel()">No</button></div>
+     </div>
+   </div>
+ </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="popup" *ngIf="msgBoxService.Show">
+  
+    <div class="popup-content popup-ui">
+      <div class="row header">
+        <h5>Message</h5>
+        <span class="close" (click)="close()">&times;</span>
+      </div>
+     <div class="row body">
+       <div class="row msg">
+         {{msgBoxService.Msg}}
+       </div>
+     </div>
+   </div>
+ </div>

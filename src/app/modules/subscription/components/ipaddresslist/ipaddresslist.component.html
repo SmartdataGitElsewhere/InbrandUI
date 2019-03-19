@@ -1,0 +1,80 @@
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<div class="top-subs-btn">
+    <!-- <i class="fa fa-arrow-left pull-left"></i> -->
+    <div class="row pull-right">
+      <!-- <button class="btn btn-primary" (click)="showUserlist()"><i class="fa fa-plus"></i> &nbsp;&nbsp;Add User</button> -->
+      <!-- <button class="btn btn-primary" (click)="addSubscription()"><i class="fa fa-plus"></i> &nbsp;&nbsp;Add Subscription</button> -->
+    </div>
+  </div>
+<div class="container edit-subs-tbl-dt">
+  <div class="row">
+    <div class="col-md-12" style="padding-bottom:15px;">
+        <button class="btn btn-primary pull-right" style="margin-left: 10px;" (click)="goBack()">Back</button>&nbsp;
+      <button class="btn btn-primary pull-right" (click)="Showpopup(template)">Add IPAddress</button>
+      
+    </div>
+  </div>
+
+  <div class="subs-tbl-data">
+    <div class="row">
+      <div class="col-md-12">
+          <mat-table #table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="SystemIPId">
+              <mat-header-cell *matHeaderCellDef mat-sort-header > SystemIP Id </mat-header-cell>
+              <mat-cell *matCellDef="let subSearch"> {{subSearch.SystemIPId}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="IPAddress">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>IPAddress</mat-header-cell>
+              <mat-cell *matCellDef="let subSearch"> {{subSearch.IPAddress}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="edit">
+                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                <mat-cell *matCellDef="let subSearch"> 
+                  <i class="fa fa-pencil actionIcon" (click)="showEditform(template,subSearch)"></i>  |  
+                  <i class="fa fa-trash actionIcon" (click)="deleteUser(template,subSearch.SystemIPId)"></i>
+                </mat-cell>
+              </ng-container>              
+            <mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          </mat-table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<ng-template #template data-keyboard="false" data-backdrop="static">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Add New IPAddress</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true" >&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+          <form name="userForm" [formGroup]="userForm" class="login-inner" (ngSubmit)="userForm.valid && onformSubmit(template,userForm.value)"
+              novalidate>
+              <div class="modal-body gray-body popup-default-form" style="background-color:#fff;color:#000">
+                  
+                  <div class="form-group row">
+                      <label for="inputPassword" class="col-sm-4 col-form-label">IP Address: <span style="color:red">*</span></label>
+                      
+                      <div class="col-sm-8" [ngClass]="{ 'has-error': !userForm.valid && userForm.submitted }">
+                          <input type="text" class="form-control" formControlName="IPAddress" placeholder="IP Address" />
+                      </div>
+                  </div>
+              </div>
+              <div class="modal-footer gray-body">
+                  <div class="pull-right">
+                      <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Save</button>
+                      <button type="cancel" class="btn btn-primary" (click)="hidePopup()">Cancel</button>
+                  </div>
+              </div>
+      
+          </form>
+    </div>
+  
+  </ng-template>

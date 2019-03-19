@@ -1,0 +1,268 @@
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+
+<div class="top-subs-btn">
+    <!-- <i class="fa fa-arrow-left pull-left"></i> -->
+    <div class="row pull-right">
+      <!-- <button class="btn btn-primary" (click)="showUserlist()"><i class="fa fa-plus"></i> &nbsp;&nbsp;Add User</button> -->
+      <!-- <button class="btn btn-primary" (click)="addSubscription()"><i class="fa fa-plus"></i> &nbsp;&nbsp;Add Subscription</button> -->
+    </div>
+  </div>
+<div class="container edit-subs-tbl-dt">
+  <div class="row">
+    <div class="col-md-12" style="padding-bottom:15px;">
+        <button class="btn btn-primary pull-right" style="margin-left: 10px;" (click)="goBack()">Back</button>&nbsp;
+      <button class="btn btn-primary pull-right" (click)="Showpopup(template)">Add New User</button>
+      
+    </div>
+  </div>
+  
+
+  <!-- <table>
+      <tr *ngFor="let item of userlistdata">
+          <td>{{item.UserId}}</td>
+          <td>{{item.FirstName}}</td>
+          <td>{{item.Email}}</td>
+          <td>{{item.PhoneNumber}}</td>
+      </tr>
+  </table> -->
+
+  <div class="subs-tbl-data">
+    <div class="row">
+      <div class="col-md-12">
+          <mat-table #table [dataSource]="dataSource" matSort>              
+            <ng-container matColumnDef="UserId">
+              <mat-header-cell *matHeaderCellDef mat-sort-header > UserId </mat-header-cell>
+              <mat-cell *matCellDef="let subSearch"> {{subSearch.UserId}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="FirstName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+              <mat-cell *matCellDef="let subSearch"> {{subSearch.FirstName}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Email">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Email ID </mat-header-cell>
+              <mat-cell *matCellDef="let subSearch"> {{subSearch.Email}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="PhoneNumber">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Phone Number</mat-header-cell>
+              <mat-cell *matCellDef="let subSearch"> {{subSearch.PhoneNumber}} </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="Status">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+              <mat-cell *matCellDef="let subSearch"> {{subSearch.Status}} </mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="edit">
+                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                <mat-cell *matCellDef="let subSearch"> 
+                  <i class="fa fa-pencil actionIcon" (click)="editUser(template,subSearch)"></i>  |  
+                  <i class="fa fa-trash actionIcon" (click)="deleteUser(template,subSearch.UserId)"></i>
+                </mat-cell>
+              </ng-container>              
+            <mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          </mat-table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button> -->
+
+<ng-template #template data-keyboard="false" data-backdrop="static">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add New User</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true" >&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+        <form name="userForm" [formGroup]="userForm" class="login-inner" (ngSubmit)="userForm.valid && onformSubmit(template,userForm.value)"
+            novalidate>
+            <div class="modal-body gray-body popup-default-form" style="background-color:#fff;color:#000">
+                
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-4 col-form-label">First Name: <span style="color:red">*</span></label>
+                    
+                    <div class="col-sm-8" [ngClass]="{ 'has-error': !userForm.valid && userForm.submitted }">
+                        <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-4 col-form-label">Last Name:</label>
+                    
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" formControlName="LastName" placeholder="Last Name" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-4 col-form-label">Email: <span style="color:red">*</span></label>
+                    
+                    <div class="col-sm-8">
+                        <input class="form-control" type="Email" formControlName="Email" placeholder="Email" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-4 col-form-label">Phone No.: <span style="color:red">*</span></label>
+                    
+                    <div class="col-sm-8">
+                        <input class="form-control" type="number" formControlName="PhoneNumber" placeholder="PhoneNumber" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-4 col-form-label">Password: <span style="color:red">*</span></label>
+                    
+                    <div class="col-sm-8">
+                        <input class="form-control" type="password" formControlName="Password" placeholder="Password" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-4 col-form-label">Confirm Password: <span style="color:red">*</span></label>
+                    
+                    <div class="col-sm-8">
+                        <input class="form-control" type="password" formControlName="ConfirmPassword" placeholder="Confirm Password" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-4 col-form-label">Role: <span style="color:red">*</span></label>
+                        
+                        <div class="col-sm-8">
+                            <select>
+                                <option>Admin</option>
+                                <option>User</option>
+                            </select>
+                        </div>
+                    </div>
+              <!-- <div class="row">
+                    <div>
+                        <div class="row">
+                            <div>
+                                <label>First Name:</label>
+                                <span style="color:red">*</span>
+                            </div>
+                            <div [ngClass]="{ 'has-error': userForm.submitted && !FirstName.valid }">
+                                <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name" />
+                            </div>
+                        </div>
+                    </div>                    
+                </div> 
+                
+
+                <div class="row">
+                    <div>
+                        <div class="row">
+                            <div>
+                                <label>Last Name:</label>
+                                <span style="color:red">*</span>
+                            </div>
+                            <div>
+                                <input class="form-control" type="text" formControlName="LastName" placeholder="Last Name" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        <div class="row">
+                            <div>
+                                <label>Email:</label>
+                                <span style="color:red">*</span>
+                            </div>
+                            <div>
+                                <input class="form-control" type="Email" formControlName="Email" placeholder="Email" />
+                            </div>
+                        </div>
+                <div class="row">
+                    <div>
+                        <label>Phone No.:</label>
+                    </div>
+                    <div>
+                        <input class="form-control" type="text" formControlName="PhoneNumber" placeholder="PhoneNumber" />
+                        <!-- <input [textMask]="{mask: mask}" class="form-control" type="text" formControlName="Phone" placeholder="Phone" /> -->
+                   <!-- </div>
+                </div>
+                        <div class="row">
+                            <div>
+                                <label>Password:</label>
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" type="password" formControlName="Password" placeholder="Password" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <label>Confirm Password:</label>
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" type="password" formControlName="Password" placeholder="Confirm Password" />
+                            </div>
+                        </div>-->
+                    <!-- <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <label>Confirm Password:</label>
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" type="password" formControlName="ConfirmPassword" placeholder="Confirm Password" />
+                            </div>
+                        </div>
+                    </div> -->
+                <!-- <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <label>Office:</label>
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-sm-7">
+                                <p-dropdown [options]="officeId" class="form-control" formControlName="OfficeId" placeholder="Select an Office" (onChange)="onChangeOffice($event.value)"
+                                    required></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <label>Department:</label>
+                                <span style="color:red">*</span>
+                            </div>
+                            <div class="col-sm-7">
+                                <p-dropdown [options]="department" class="form-control" formControlName="Department" placeholder="Select a Department"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+    
+                <!-- <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <label>Status:</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <p-dropdown [options]="status" class="form-control" formControlName="Status" placeholder="Select a Status"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="modal-footer gray-body">
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Save</button>
+                    <button type="cancel" class="btn btn-primary" (click)="hidePopup()">Cancel</button>
+                </div>
+            </div>
+    
+        </form>
+  </div>
+
+</ng-template>

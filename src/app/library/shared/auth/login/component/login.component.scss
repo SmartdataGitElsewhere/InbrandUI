@@ -1,0 +1,226 @@
+$pure-white:#fff;
+$full:200px;
+
+.login-container{
+    position: relative;
+    width: 300px;
+    margin: 80px auto;
+    padding: $full/10 $full/5 $full/5;
+    text-align: center;
+    background: $pure-white;
+    border: 1px solid #ccc;
+}
+.heading{
+    margin: -14px 0px 30px 0px;
+    color: #4f3215;
+    font-size: $full/10;
+}
+#output{
+    position: absolute;
+    width: 300px;
+    top: -75px;
+    left: 0;
+    color: $pure-white;
+}
+
+#output.alert-success{
+    background: rgb(25, 204, 25);
+}
+
+#output.alert-danger{
+    background: rgb(228, 105, 105);
+}
+
+
+.login-container::before,.login-container::after{
+    content: "";
+    position: absolute;
+    width: 100%;height: 100%;
+    top: 3.5px;left: 0;
+    background: $pure-white;
+    z-index: -1;
+    -webkit-transform: rotateZ(4deg);
+    -moz-transform: rotateZ(4deg);
+    -ms-transform: rotateZ(4deg);
+    border: 1px solid #ccc;
+}
+
+.login-container::after{
+    top: 5px;
+    z-index: -2;
+    -webkit-transform: rotateZ(-2deg);
+     -moz-transform: rotateZ(-2deg);
+      -ms-transform: rotateZ(-2deg);
+}
+
+.avatar{
+    width: 100px;height: 100px;
+    margin: 10px auto 30px;
+    // border-radius: 100%;
+    border: 2px solid #aaa;
+    background-size: cover;
+}
+
+.form-box input{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    height:40px;
+    border: 1px solid #ccc;;
+    background: #fafafa;
+    transition:0.2s ease-in-out;
+
+}
+
+.form-box input:focus{
+    outline: 0;
+    background: #eee;
+}
+
+.form-box input[type="text"]{
+    text-transform: lowercase;
+}
+
+.form-box input[type="password"]{
+    border-top: 0;
+}
+
+.form-box button.login{
+    margin-top:15px;
+    padding: 10px $full/10;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+}
+.error{
+  background: #ffa2a2;
+}
+
+.btn-info,.btn-info:hover {
+  color: $pure-white;
+  background-color: #4f3215;
+  border-color: #4f3215;
+}
+
+.logo {
+     height: 90px;
+}
+.login-block {
+    width: 400px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 5px;
+    border-top: 5px solid #00adef;
+    margin: 0 auto;
+    position: relative;
+}
+.dv-img{ display: block; margin: 0 auto; padding-bottom: 16px;}
+
+.login-block h1 {
+    text-align: center;
+    color: #7b7979;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 600;
+    border-bottom: 3px solid #00adef;
+    width: 11%;
+    padding-bottom: 7px;
+}
+
+.login-block input {
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 0px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 30px;
+    font-size: 14px;
+    font-family: Montserrat;
+    padding: 0 15px 0 30px;
+    outline: none;
+}
+
+
+.pass-block a{
+    position: absolute;
+    top: 64%;
+    right: 36px;
+    font-size: 14px;
+    color: #2b72bd;
+    font-weight: 500;
+    cursor: pointer;
+}
+.pass-block a:hover{
+    color:#1e5c9e;
+    text-decoration: underline;
+}
+
+/* .login-block input#username:focus {
+    background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px bottom no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input#password {
+    background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px top no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input#password:focus {
+    background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px bottom no-repeat;
+    background-size: 16px 80px;
+} */
+
+.login-block input:active, .login-block input:focus {
+    border: none;
+    border-bottom: 2px solid #00adef;
+}
+
+.login-block button {
+    width: 100%;
+    height: 40px;
+    background: #00adef;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: 1px solid #00adef;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Montserrat;
+    outline: none;
+    cursor: pointer;
+}
+
+.login-block button:hover {
+    background: #00adef;
+}
+.login-body i.fa-user {
+position: absolute;
+left: 35px;
+margin-top: 10px;
+font-size: 21px;
+color: #c2c2c2;
+top:41%;
+}
+.login-body i.fa-unlock-alt {
+    position: absolute;
+    left: 35px;
+    margin-top: 10px;
+    font-size: 21px;
+    color: #c2c2c2;
+    top:61%;
+    }
+@media all and (max-width:400px){
+    .login-block{ width:95%;}
+}

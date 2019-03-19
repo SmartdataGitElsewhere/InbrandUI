@@ -1,0 +1,73 @@
+.popup{
+    position: fixed;
+width: 100%;
+top: 0;
+left: 0;
+height: 100%;
+z-index: 9999;
+background-color: rgba(0,0,0,0.4);
+}
+
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 0px 15px 0px 15px;
+    border: 1px solid #888;
+    width: 345px; /* Could be more or less, depending on screen size */
+}
+.header{
+    background-color: #33b8ea;
+    color: #fff;
+    padding: 5px;
+}
+
+.header h4{
+    width: 200px;
+}
+/* The Close Button */
+.close {
+    color: #fff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 100px;
+}
+
+.close:hover,
+.close:focus {
+    color: #7d7878;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.item {
+    margin-left: 0px ! important;
+    margin-right: 0px ! important;
+}
+.item div{
+    padding-left: 5px;
+}
+
+.item .col-sm-11{
+    border-bottom: 1px solid #ece3e3;
+    font-size: 13px;
+}
+ul{
+    padding-left: 0px;
+}
+ul li{
+    list-style: none;
+}
+.liIcon{
+    float: left;
+    width: 20px;
+}
+.liContant{
+    width: 290px;
+    float: right;
+    font-size: 12px;
+}
+
+.item-rw-ct{ padding-top: 8px; padding-bottom: 8px;}
+.item-rw-ui .item-rw-cl{ padding-left: 0px; padding-top: 10px;}

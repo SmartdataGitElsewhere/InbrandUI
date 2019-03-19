@@ -1,0 +1,49 @@
+.popup{
+    position: fixed;
+width: 100%;
+top: 0;
+left: 0;
+height: 100%;
+z-index: 9999;
+background-color: rgba(0,0,0,0.4);
+}
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 0px 15px 0px 15px;
+    border: 1px solid #888;
+    width: 345px; /* Could be more or less, depending on screen size */
+}
+.header{
+    background-color: #33b8ea;
+    color: #fff;
+    padding: 5px;
+
+}
+
+.header h5{
+    width: 200px;
+}
+/* The Close Button */
+.close {
+    color: #fff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 100px;
+}
+
+.close:hover,
+.close:focus {
+    color: #7d7878;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.msg {
+    margin-left: 5px;
+    padding: 15px 10px 20px 10px;
+}
+
+.popup-ui .header .close{ line-height: 18px; margin-left: 110px;} 
+.popup-ui .header h5{ margin-bottom: 3px;}

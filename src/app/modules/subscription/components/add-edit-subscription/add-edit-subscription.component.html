@@ -1,0 +1,174 @@
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="top-subs-btn">
+  <!-- <i class="fa fa-arrow-left pull-left"></i> -->
+  <label>Add Subscription</label>
+  <div class="row pull-right">
+    <button class="btn btn-primary btnHeader" (click)="AllSubscription()">
+      <i class="fa fa-list"></i> &nbsp;&nbsp;All Subscription</button>
+  </div>
+</div>
+
+<div class="container edit-subs-tbl-dt">
+
+  
+
+
+  <div class="row" *ngIf="!IsEdit">
+    <div class="col-md-6">
+      <div class="row">
+          <div class="col-sm-7">
+              <label for="">Use Multi line text input to enter multiple domains.</label>
+          </div>          
+          <!-- <div class="col-md-5 text-right upload-form-top" *ngIf="!IsEdit">
+            <input type="file" style="display: inline-block;" (change)="incomingfile($event)" placeholder="Upload file" accept=".xlsx">
+            <button class="btn btn-primary" (click)="Upload()">Upload</button>
+          </div>           -->
+      </div>
+      
+      <!-- <textarea [(ngModel)]="multiLineList" (input)="addMultipleDomains();getProduct_Customer()" (focus)="focusOnMultiBox=true;" (focusout)="focusOnMultiBox = false;"></textarea> -->
+      <textarea [(ngModel)]="multiLineList" (input)="addMultipleDomains()" (focus)="focusOnMultiBox=true;" (focusout)="focusOnMultiBox = false;"></textarea>
+    </div>
+
+    <div class="col-md-6">
+      <div class="row" >
+          <div class="col-sm-12" style="display: inherit;">
+              <label for=""> Enter price</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="file"  style="height: 32px;width: 206px;"(change)="incomingfile($event)" placeholder="Upload file" accept=".xlsx">
+              <button class="btn btn-primary" (click)="Upload()" style="height:30px;">Upload</button>
+          </div>          
+          <!-- <div class="col-md-5 text-right upload-form-top" *ngIf="!IsEdit">
+            <input type="file" style="display: inline-block;" (change)="incomingfile($event)" placeholder="Upload file" accept=".xlsx">
+            <button class="btn btn-primary" (click)="Upload()">Upload</button>
+          </div>           -->
+      </div>
+      <!-- <br> -->
+      <!-- <textarea [(ngModel)]="multiLineList" (input)="addMultipleDomains();getProduct_Customer()" (focus)="focusOnMultiBox=true;" (focusout)="focusOnMultiBox = false;"></textarea> -->
+      <span style="color:white">jskdfhjksdhfjkhskfh</span>
+      <textarea [(ngModel)]="multiLinePriceList" (input)="updatePrice()" (focus)="focusOnMultiBox=true;" (focusout)="focusOnMultiBox = false;"></textarea>
+    </div>
+    
+  </div>
+
+  <div class="row btm-inpt-dt col-cel-spc title-col">
+    <div class="col-md-1">
+      <label>Customer Id</label>
+    </div>
+    <div class="col-md-2">
+      <label>Customer Name</label>
+    </div>
+
+    <div class="col-md-2">
+      <label>ArticleID</label>
+    </div>
+
+    <div class="col-md-2">
+      <label>Domain</label>
+    </div>
+
+    <div class="col-md-1">
+      <label>TLD</label>
+    </div>
+
+    <div class="col-md-1">
+      <label>Price</label>
+    </div>
+
+    <div class="col-md-2">
+      <label>Billing Date</label>
+    </div>
+    <div class="text-center action-col">
+      <label>Action</label>
+    </div>
+  </div>
+<div class="all-tbl-blk">
+  <div class="row btm-inpt-dt col-cel-spc col-tbl-sz" *ngFor="let subSearchrow of subSearchList; let i = index">
+    <div class="col-md-1">
+      <!-- <label>Customer Id</label> -->
+      <input type="text" class="form-control" [ngStyle]="{'background-color':subSearchrow.dublicatecheck == 'red' ? subSearchrow.recordStatus == false ? '#ff0000a1' : '' : 'orange' }"
+        [(ngModel)]="subSearchrow.customerID" placeholder="Customer Id" (keyup)="i==0 && setAll()">
+    </div>
+    <div class="col-md-2">
+      <!-- <label>Customer Name</label> -->
+      <input type="text" class="form-control" [ngStyle]="{'background-color':subSearchrow.dublicatecheck == 'red' ? subSearchrow.recordStatus == false ? '#ff0000a1' : '' : 'orange' }"
+        [(ngModel)]="subSearchrow.customerName" placeholder="Customer Name" (keyup)="i==0 && setAll()">
+        <i class="fa fa-search" (click)="showCustomerPopup(subSearchrow)"></i>
+    </div>
+
+    <div class="col-md-2">
+      <!-- <label>ArticleID</label> -->
+      <!-- <input type="text" class="form-control" [ngStyle]="{'background-color':subSearchrow.dublicatecheck == 'red' ? subSearchrow.recordStatus == false ? '#ff0000a1' : '' : 'orange' }"
+        [(ngModel)]="subSearchrow.articleID" placeholder="Article ID"> -->
+        <input type="text" class="form-control" [ngStyle]="{'background-color':subSearchrow.dublicatecheck == 'red' ? subSearchrow.recordStatus == false ? '#ff0000a1' : '' : 'orange' }"
+        [(ngModel)]="subSearchrow.articleID" placeholder="Article ID">
+        <i class="fa fa-search" (click)="showProductPopup(subSearchrow)"></i>
+    </div>
+
+    <div class="col-md-2">
+      <!-- <label>Domain</label> -->
+      <input type="text" class="form-control" [ngStyle]="{'background-color':subSearchrow.dublicatecheck == 'red' ? subSearchrow.recordStatus == false ? '#ff0000a1' : '' : 'orange' }"
+        [(ngModel)]="subSearchrow.domainName" placeholder="Domain">
+    </div>
+
+    <div class="col-md-1">
+      <!-- <label>TLD</label> -->
+      <input type="text" class="form-control" [ngStyle]="{'background-color':subSearchrow.dublicatecheck == 'red' ? subSearchrow.recordStatus == false ? '#ff0000a1' : '' : 'orange' }"
+        [(ngModel)]="subSearchrow.tld" placeholder="TLD">
+    </div>
+
+    <div class="col-md-1">
+      <!-- <label>Price</label> -->
+      <input type="text" class="form-control" [ngStyle]="{'background-color':subSearchrow.dublicatecheck == 'red' ? subSearchrow.recordStatus == false ? '#ff0000a1' : '' : 'orange' }"
+        [(ngModel)]="subSearchrow.price" placeholder="Price">
+    </div>
+
+    <div class="col-md-2">
+      <!-- <label>Billing Date</label> -->
+      <!-- <input type="text" class="form-control" [(ngModel)]="subSearch.NextBillingDate" placeholder="Next Billing Date"> -->
+      <!-- <input type="text"
+           class="form-control"
+           [minDate]="minDate"
+           [maxDate]="maxDate"
+           #dp="bsDatepicker"
+           bsDatepicker  placeholder="Next Billing Date" [(ngModel)]="subSearchrow.nextBillDate"> -->
+      <!-- [(bsValue)]="bsValue" -->
+
+      <input class="form-control" [ngStyle]="{'background-color':subSearchrow.dublicatecheck == 'red' ? subSearchrow.recordStatus == false ? '#ff0000a1' : '' : 'orange' }"
+        placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="subSearchrow.nextBillDate" value="" ngbDatepicker #d="ngbDatepicker"
+        type="datetime">
+      <div class="input-group-append">
+        <i class="fa fa-calendar" (click)="d.toggle()"></i>
+      </div>
+    </div>
+    <div class="text-center action-col">
+      <a href="javascript:void(0);"><i class="fa fa-trash actionIcon" (click)= "deletelistdata(subSearchrow.DomainId)"></i></a>
+    </div>
+  </div>
+</div>
+<div class="btn-blk-xcl">
+    <div class="row">
+        <div class="col-md-6">
+            <button class="btn btn-primary" (click)="saveSubscriptions()">Save</button>
+            <button class="btn btn-default" (click)="goBack()">Back</button>
+          </div>
+      <div class="col-md-6 text-right" *ngIf="!IsEdit">
+        <button class="btn btn-primary" (click)="removeRow()">Remove</button>
+        <button class="btn btn-default" (click)="addMore()">Add More</button>
+      </div>
+      <!-- <div class="col-md-1 text-left">
+          <button (click)="addMore()" >Add More</button>
+        </div> -->
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <div class="row">
+
+    
+  </div>
+
+</div>
+<app-product-light-box *ngIf="showProductList" (closePopup)="closePodlst($event)"></app-product-light-box>
+<app-customer-list *ngIf="showCustomerlist" (customerclosePopup)="closeCustomerlist($event)"></app-customer-list>

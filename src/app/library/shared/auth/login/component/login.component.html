@@ -1,0 +1,41 @@
+<!-- <div class="container">
+    <div  id="loginContainer" class="center-block">
+    <div class="row" >
+        <div class="col-md-6">
+            <label >Username</label>
+            <input type="text" class="form-control text-center" [(ngModel)]="loginModel.username">
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <label >Password</label>
+            <input type="password" class="form-control text-center"  [(ngModel)]="loginModel.password">
+        </div>
+    </div>
+    <br>
+    <div class="row text-center">
+        <div class="col-md-2">
+            <button (click)="doLogin()" class="form-control">Login</button>
+        </div>
+    </div>
+</div>
+</div> -->
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="login-body">
+        <div class="logo"></div>
+    <div class="login-block">
+        <img class="dv-img" src="assets/images/inbrandlogo.png" alt="logo" />
+        <h1>Login</h1>
+            <input type="text" value="" placeholder="Username" id="username" [(ngModel)]="loginModel.username" />
+            <i class="fa fa-user fa-2x"></i>
+        <div class="pass-block">
+            <input type="password" value="" placeholder="Password" id="password" [(ngModel)]="loginModel.password" />
+            <i class="fa fa-unlock-alt fa-2x"></i>
+            <a>forget password?</a>
+            
+        </div>
+        <button (click)="doLogin()">Submit</button>
+    </div>
+</div>

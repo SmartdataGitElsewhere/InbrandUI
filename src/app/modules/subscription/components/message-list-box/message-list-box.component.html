@@ -1,0 +1,19 @@
+<div class="popup" *ngIf="msgList.length>0?true:false">
+  
+   <div class="popup-content popup-ui">
+     <div class="row header">
+       <h4>Message</h4>
+       <span class="close" (click)="close()">&times;</span>
+     </div>
+    <div class="body item-rw-ui">
+      <div class="row item" *ngFor="let ms of msgList">
+        <div class="col-sm-1 item-rw-cl" >
+            <!-- <img src="{{ms.success?'../inbrand/assets/images/right.png':'../inbrand/assets/images/Cross.png'}}" style="width:20px;"/> -->
+            <img src="{{ms.success?'/assets/images/right.png':'/assets/images/Cross.png'}}" style="width:20px;"/>
+        </div>
+        <div class="col-sm-11 item-rw-ct">{{ms.msg}}</div>
+        
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,183 @@
+
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <div class="top-subs-btn">
+    <!-- <i class="fa fa-arrow-left pull-left"></i> -->
+    <div class="row pull-right">
+      <button class="btn btn-primary" *ngIf="IsadminRole == 'true'" (click)="showIPAddresslist()"><i class="fa fa-plus"></i> &nbsp;&nbsp;Add IPAddress</button>
+      <button class="btn btn-primary" *ngIf="IsadminRole == 'true' " (click)="showUserlist()"><i class="fa fa-plus"></i> &nbsp;&nbsp;Add User</button>
+      <button class="btn btn-primary" (click)="addSubscription()"><i class="fa fa-plus"></i> &nbsp;&nbsp;Add Subscription</button>
+      <button class="btn btn-primary" (click)="logout()">Logout</button>
+    </div>
+  </div>
+
+<div class="container subs-tbl-data">
+  <div class="srch-srt-top">
+    <div class="row srch-tbl">
+      <div class="col-md-2 srch-frst-btn">
+        <input type="text" class="form-control" (keyup)="getSubscriptionSearch()" [(ngModel)]="subSearchFilter.customerID" placeholder="Customer Id">
+        <!-- <i class="fa fa-search"></i> -->
+      </div>
+
+      <div class="col-md-2 srch-mre-btn">
+        <input type="text" class="form-control" (keyup)="getSubscriptionSearch()" [(ngModel)]="subSearchFilter.customerName" placeholder="Customer Name">
+        <!-- <i class="fa fa-search"></i> -->
+      </div>
+
+      <div class="col-md-2 srch-mre-btn">
+        <input type="text" class="form-control" (keyup)="getSubscriptionSearch()" [(ngModel)]="subSearchFilter.domainName" placeholder="Domain">
+       <i class="fa fa-search" (click)="showdomainSearch()"></i>
+      </div>
+
+      <div class="col-md-1 srch-mre-btn">
+        <input type="text" class="form-control" (keyup)="getSubscriptionSearch()" [(ngModel)]="subSearchFilter.tld" placeholder="TLD">
+        <!-- <i class="fa fa-search"></i> -->
+      </div>
+
+      <div class="col-md-2 srch-mre-btn">
+        <input type="text" class="form-control" (keyup)="getSubscriptionSearch()" [(ngModel)]="subSearchFilter.articleID" placeholder="Article Id">
+        <i class="fa fa-search" (click)="showProductListPopup()"></i>
+        <app-product-light-box *ngIf="showProductList" (closePopup)="closePodlst($event)"></app-product-light-box>
+      </div>
+
+      <div class="col-md-1 srch-mre-btn">
+        <input type="text" class="form-control" (keyup)="getSubscriptionSearch()" [(ngModel)]="subSearchFilter.price" placeholder="Price">
+        <!-- <i class="fa fa-search"></i> -->
+      </div>
+
+      <div class="col-md-2 srch-mre-btn">
+
+          <!-- <input type="text" class="form-control" [(ngModel)]="subSearch.NextBillingDate" placeholder="Next Billing Date"> -->
+          <!-- <input type="text"
+            class="form-control"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            #dp="bsDatepicker"
+            bsDatepicker  placeholder="Next Billing Date" (bsValueChange)="getSubscriptionSearch()" [(ngModel)]="subSearch.nextBillDate"> -->
+            <!-- <input [matDatepicker]="myDatepicker">
+            <mat-datepicker #myDatepicker></mat-datepicker> -->
+            <!-- <i class="fa fa-calendar"></i> -->
+            
+            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="subSearchFilter.nextBillDate"
+              (ngModelChange)="dateSearch()" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+                <i class="fa fa-calendar" (click)="d.toggle()"></i>
+            </div>
+
+      </div>
+  
+      <div class="col-md-3 srch-mre-btn">
+      
+        
+          <input class="form-control" placeholder="From : yyyy-mm-dd" name="dpf" [(ngModel)]="subSearchFilter.fromDate"
+            (ngModelChange)="dateSearch()" ngbDatepicker #df="ngbDatepicker">
+          <div class="input-group-append">
+              <i class="fa fa-calendar" (click)="df.toggle()"></i>
+          </div>
+        
+      
+    </div>
+
+    <div class="col-md-3 srch-mre-btn">
+      <input class="form-control" placeholder="To : yyyy-mm-dd" name="dpt" [(ngModel)]="subSearchFilter.toDate"
+        (ngModelChange)="dateSearch()" ngbDatepicker #dt="ngbDatepicker">
+      <div class="input-group-append">
+          <i class="fa fa-calendar" (click)="dt.toggle()"></i>
+      </div>
+  </div>
+  <div>
+    <button class="btn btn-primary" (click)="genrateInvoice()">Generate Invoice</button>
+    <!-- <button class="btn btn-danger" (click)="deleteMultiple($event)">Delete Multiple</button> -->
+    <button class="btn btn-success" (click)="ExportToExcel()">Export To Excel</button>
+  </div>
+  </div>
+</div>
+  <div class="row">
+    <div class="col-md-12">
+       
+    <mat-table #table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="checkItem">
+            <mat-header-cell *matHeaderCellDef style="margin-top: 5px;"> 
+               <input type="checkbox" id="selectAll" [(ngModel)]="checkAll"  (ngModelChange)="selectAllItem()"> 
+               <label for="selectAll"><strong>All</strong></label>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let subSearch"> 
+               <input type="checkbox"[(ngModel)]="subSearch.checkItem" (click)="onSelect(template, subSearch.Id)">
+            </mat-cell>
+          </ng-container>
+      <ng-container matColumnDef="customerID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header > <strong>Customer Id</strong> </mat-header-cell>
+        <mat-cell *matCellDef="let subSearch"> {{subSearch.customerID}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="customerName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header><strong>Customer Name</strong></mat-header-cell>
+        <mat-cell *matCellDef="let subSearch"> {{subSearch.customerName}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="domainName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Domain</strong> </mat-header-cell>
+        <mat-cell *matCellDef="let subSearch"> {{subSearch.domainName}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="articleID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Article Id</strong> </mat-header-cell>
+        <mat-cell *matCellDef="let subSearch"> {{subSearch.articleID}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="tld">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> <strong>TLD </strong></mat-header-cell>
+        <mat-cell *matCellDef="let subSearch"> {{subSearch.tld}} </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Price</strong> </mat-header-cell>
+        <mat-cell *matCellDef="let subSearch"> {{subSearch.price}} </mat-cell>
+        
+      </ng-container>
+      <ng-container matColumnDef="nextBillDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Next Bill Date</strong> </mat-header-cell>
+        <mat-cell *matCellDef="let subSearch"> {{subSearch.nextBillDate | date:'yyyy-MM-dd'}} </mat-cell>
+        
+      </ng-container>
+      <ng-container matColumnDef="edit">
+          <mat-header-cell *matHeaderCellDef> <strong>Edit </strong></mat-header-cell>
+          <mat-cell *matCellDef="let subSearch"> 
+            <i class="fa fa-pencil actionIcon" (click)="editSubscription(subSearch)"></i>  |  
+            <i class="fa fa-trash actionIcon" (click)="deleteSubscription(template, subSearch.Id)"></i>
+          </mat-cell>
+        </ng-container>
+        
+      <mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    </div>      
+    
+  </div>
+  <br>
+  <button *ngIf="subSearchList.length!=0" class="btn btn-danger" (click)="deleteMultiple($event)">Delete Multiple</button>
+</div>
+<app-message-list-box [msgList]="msgList"></app-message-list-box>
+
+
+
+<div *ngIf="showDomainSearch">
+  <div class="modal-content" style="margin-top: -100px;width: 406px;margin-left: -150px;height: 360px;top: 50%;position: fixed;left: 50%;">
+    <div class="modal-header state modal-primary">
+        <h4 class="modal-title" id="modal-large-label" style="font-size: 17px;"><i class="fa fa-search" style="margin-right: 10px;"></i>Multiple Domain Search</h4>
+        <!-- <button type="button"  id="eiModelClose" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-search"></i></span></button> -->
+        <button type="button" (click)="closemodal()" id="eiModelClose" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        
+    </div>
+    <div class="modal-body" style="max-height: calc(100vh - 210px);
+            overflow-y: auto;">
+<!-- <textarea>Hi</textarea> -->
+<div *ngFor="let result of results" [innerHTML]="result | highlight: result"></div>
+ <textarea [(ngModel)]="multiLineDomainList" (input)="searchMultipleDomains();searchMultipleDomainslist();" style="height: 263px;width: 370px;"></textarea>
+ 
+ <!-- <div *ngFor="let result of results" [innerHTML]="result.body | highlight: searchTerm"></div>
+            </div> -->
+</div>
+</div>
+</div>
+
+
+

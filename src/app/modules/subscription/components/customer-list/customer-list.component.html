@@ -1,0 +1,21 @@
+<div class="popup dv-popup">
+  <div class="row">
+      <div class="col-sm-10"></div>
+      <div class="col-sm-2 close text-right" (click)="close(null)">X</div>
+  </div>
+<mat-table #table [dataSource]="datasource" matSort>
+  <ng-container matColumnDef="CustomerNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="headercell">ID</mat-header-cell>
+      <mat-cell *matCellDef="let item">{{item.CustomerNumber}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="headercell">CustomerName</mat-header-cell>
+      <mat-cell *matCellDef="let item">{{item.Name}}</mat-cell>
+  </ng-container>
+  <div class="dv-mat-hgt">
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns" (click)="close(row)"></mat-row>
+</div>
+</mat-table>
+<p *ngIf="!datasource" class="load">Please wait...</p>
+</div>

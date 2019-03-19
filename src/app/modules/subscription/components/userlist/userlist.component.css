@@ -1,0 +1,63 @@
+.top-subs-btn{ background-color: #00adef; padding: 20px; display: block; height: 82px; }
+  .top-subs-btn .row.pull-right{ float: right}
+  .top-subs-btn .btn-primary{    color: #7b7979; background-color: #fff; border-color: #fff; border-radius: 20px; margin-right: 50px; padding: 7px 22px;}
+.top-subs-btn .fa-arrow-left{ color: #fff; margin-left: 20px; font-size: 18px; margin-top: 6px; font-weight: lighter;}
+.subs-tbl-data .srch-frst-btn input{border: none; background-color: #f6f6f6; border-radius: 20px; padding-bottom: 9px;}
+.subs-tbl-data .srch-mre-btn input{border: none; background-color: #f6f6f6; border-radius: 20px; padding-bottom: 9px;}
+.subs-tbl-data input{border: none;}
+.srch-tbl{ margin-bottom: 30px;}
+.subs-tbl-data.container{ margin-top: 15px; max-width: 1282px !important;}
+.subs-tbl-data .col-md-2{ position: relative; margin-bottom: 10px;}
+.srch-frst-btn.col-md-2 i.fa-search{ color: #00adef; position: absolute; top: 1px; right: 16px; cursor: pointer; border-radius: 50px; background-color: #dcdcdc; padding: 10px;}
+.subs-tbl-data .srch-mre-btn.col-md-2 i.fa-search, .srch-tbl .srch-mre-btn.col-md-2 i.fa-calendar {position: absolute; top: 2px; right: 16px; cursor: pointer; border-radius: 20px; color: #fff; background-color: #dcdcdc; padding: 10px;}
+.subs-tbl-data .srch-mre-btn.col-md-3 i.fa-search, .srch-tbl .srch-mre-btn.col-md-3 i.fa-calendar {position: absolute; top: 2px; right: 16px; cursor: pointer; border-radius: 20px; color: #fff; background-color: #dcdcdc; padding: 10px;}
+.subs-tbl-data .srch-mre-btn.col-md-1 i.fa-search{position: absolute; top: 2px; right: 16px; cursor: pointer; border-radius: 50px; color: #fff; background-color: #dcdcdc;  padding: 10px;}
+bs-datepicker-container { background-color: aliceblue; padding: 15px;}
+.subs-tbl-data .mat-header-row{ min-height: 42px; background-color: #33b8ea; color:#fff; border-bottom: 1px solid #dbdbdb; padding: 0 15px !important; font-weight: 600; text-align: center;}
+.subs-tbl-data .mat-row{ min-height: 42px;} 
+.subs-tbl-data .mat-row{border-bottom: 1px solid #dbdbdb; color: #495057; padding: 0 15px !important; font-weight: 400; text-align: center;}
+.subs-tbl-data .mat-row:hover{ background-color: #c3e3ef33;}
+.actionIcon{ font-size: 16px; color: #00adef; cursor: pointer;}
+.srch-tbl .form-control{ font-size: 14px; height: 40px;}
+.srch-tbl .col-md-2, .srch-tbl .col-md-3, .srch-tbl .col-md-1{ padding-right: 5px; padding-left: 5px;}
+.srch-tbl{ margin-left: -5px; margin-right: -5px;}
+.srch-tbl .srch-mre-btn i.fa-calendar, .srch-tbl .srch-mre-btn i.fa-search, .subs-tbl-data .srch-mre-btn.col-md-3 i.fa-search, .srch-tbl .srch-mre-btn.col-md-3 i.fa-calendar{ right: 6px !important;}
+.srch-srt-top{ padding: 8px; padding-bottom: 0px; border: 1px solid #ddd; margin-bottom: 8px; margin-top: -10px;}
+.srch-srt-top .srch-tbl{ margin-bottom: 8px;}
+.subs-tbl-data .mat-table{ border: 1px solid #ddd;}
+.subs-tbl-data .mat-header-cell input[type="checkbox"]{ vertical-align: top; margin-top: 3px;}
+.modal-body{ padding: 8px;  background-color: aliceblue;}
+.modal-header{ padding: 10px 16px; background-color: #00adef; color: #fff;}
+.modal-header h4{ font-size: 18px;}
+.modal-footer{ padding: 8px 8px 0px 2px;}
+.btn-primary.pull-right{ margin-top: 15px;}
+
+.form-control.ng-invalid.ng-dirty{border: 1px solid red};
+.btn-primary.pull-right{ margin: 15px 0 !important;}
+.mat-header-cell{ text-align: left;}
+.subs-tbl-data .mat-row{ text-align: left;}
+
+@media all and (min-width:1200px){
+.subs-tbl-data.container{  max-width: 1282px !important; padding: 0;}
+
+}
+@media all and (min-width:992px){
+.subs-tbl-data .col-md-2{ max-width: 15.6666% !important;}
+.subs-tbl-data .col-md-1{ flex: 0 0 10.8%;  max-width: 10.8%;}
+.container { max-width: 96%;}
+}
+@media (min-width:768px) and (max-width:991px){
+  .subs-tbl-data .col-md-2{ max-width: 25% !important; flex: 0 0 25%}
+  .subs-tbl-data .col-md-1{ flex: 0 0 25%;  max-width: 25%;}
+  .container { max-width: 96%;}
+  }
+  @media (min-width: 576px){
+.col-sm-8 { -ms-flex: 0 0 64.666667% !important; flex: 0 0 64.666667% !important; max-width: 64.666667% !important;}
+.col-sm-4 { -webkit-box-flex: 0 !important; -ms-flex: 0 0 35.333333% !important; flex: 0 0 35.333333% !important; max-width: 35.333333% !important;}
+}
+
+  .GenerateInvoicImgActice{
+    width: 20px;
+    cursor: pointer;
+  }
+
